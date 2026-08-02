@@ -5,7 +5,11 @@ Authors@R: c(
     person("Sebastian", "Fischer", , "seb.fischer@tutamail.com", role = c("cre", "aut"),
            comment = c(ORCID = "https://orcid.org/0000-0002-9609-3197")),
     person("Daniel", "Falbel", , "daniel@posit.co", role = "aut",
-           comment = c(ORCID = "https://orcid.org/0009-0006-0143-2392"))
+           comment = c(ORCID = "https://orcid.org/0009-0006-0143-2392")),
+    person("Daniel", "James", role = "cph",
+           comment = "Author of the Boost.ContainerHash hash_combine copied in src/hash.h (BSL-1.0); see inst/COPYRIGHTS"),
+    person("The OpenXLA Authors", role = "cph",
+           comment = "Authors of the PJRT C API and XLA FFI headers in inst/include and the XLA protobuf definitions in inst/proto (Apache-2.0); see inst/COPYRIGHTS")
   )
 Description: Provides an R interface to PJRT (Pluggable Jit RunTime),
     which allows you to run XLA or stableHLO programs on a
@@ -13,6 +17,8 @@ Description: Provides an R interface to PJRT (Pluggable Jit RunTime),
 License: MIT + file LICENSE
 URL: https://r-xla.github.io/pjrt/, https://github.com/r-xla/pjrt
 BugReports: https://github.com/r-xla/pjrt/issues
+Depends:
+    R (>= 4.4.0)
 Imports:
     bit64,
     checkmate,
@@ -24,10 +30,15 @@ Imports:
     withr,
     tengen (>= 0.2.0)
 Suggests:
+    anvl,
     callr,
     stablehlo,
     testthat (>= 3.0.0),
     xml2
+Remotes:
+    r-xla/anvl,
+    r-xla/stablehlo,
+    r-xla/tengen
 LinkingTo:
     Rcpp,
     testthat
@@ -46,6 +57,7 @@ Collate:
     'compare.R'
     'custom_call.R'
     'device.R'
+    'dispatch.R'
     'execution_options.R'
     'format.R'
     'hlo.R'

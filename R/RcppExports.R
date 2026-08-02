@@ -5,6 +5,18 @@ cpp_tests_enabled <- function() {
     .Call(`_pjrt_cpp_tests_enabled`)
 }
 
+impl_dispatcher_create <- function(capacity, compile_fn, static_names, engine, backend, move_inputs, default_device_fn, extractor_fn) {
+    .Call(`_pjrt_impl_dispatcher_create`, capacity, compile_fn, static_names, engine, backend, move_inputs, default_device_fn, extractor_fn)
+}
+
+impl_dispatcher_size <- function(dispatcher) {
+    .Call(`_pjrt_impl_dispatcher_size`, dispatcher)
+}
+
+impl_dispatch_run <- function(dispatcher, args) {
+    .Call(`_pjrt_impl_dispatch_run`, dispatcher, args)
+}
+
 get_eigh_handler <- function() {
     .Call(`_pjrt_get_eigh_handler`)
 }
@@ -189,6 +201,10 @@ impl_test_enqueue_release <- function(x) {
     invisible(.Call(`_pjrt_impl_test_enqueue_release`, x))
 }
 
+impl_test_buffer_aliases_prot <- function(x) {
+    .Call(`_pjrt_impl_test_buffer_aliases_prot`, x)
+}
+
 impl_raw_to_array <- function(host_data, dtype, dims, minor_to_major) {
     .Call(`_pjrt_impl_raw_to_array`, host_data, dtype, dims, minor_to_major)
 }
@@ -249,10 +265,6 @@ impl_tree_build <- function(x) {
     .Call(`_pjrt_impl_tree_build`, x)
 }
 
-impl_tree_flatten <- function(x) {
-    .Call(`_pjrt_impl_tree_flatten`, x)
-}
-
 impl_tree_build_flatten <- function(x) {
     .Call(`_pjrt_impl_tree_build_flatten`, x)
 }
@@ -269,12 +281,16 @@ impl_tree_equal <- function(a, b) {
     .Call(`_pjrt_impl_tree_equal`, a, b)
 }
 
+impl_tree_hash <- function(tree) {
+    .Call(`_pjrt_impl_tree_hash`, tree)
+}
+
 impl_tree_kind <- function(tree) {
     .Call(`_pjrt_impl_tree_kind`, tree)
 }
 
-impl_tree_names <- function(tree) {
-    .Call(`_pjrt_impl_tree_names`, tree)
+impl_tree_child_names <- function(tree) {
+    .Call(`_pjrt_impl_tree_child_names`, tree)
 }
 
 impl_tree_child_kinds <- function(tree) {
@@ -283,10 +299,6 @@ impl_tree_child_kinds <- function(tree) {
 
 impl_tree_child_sizes <- function(tree) {
     .Call(`_pjrt_impl_tree_child_sizes`, tree)
-}
-
-impl_tree_flat_names <- function(tree) {
-    .Call(`_pjrt_impl_tree_flat_names`, tree)
 }
 
 impl_tree_path <- function(tree, i) {
